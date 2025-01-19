@@ -8,7 +8,7 @@ void	*ft_memcpy(void *dest, void *src, size_t l)
 
 	if (!dest || !src)
 		return NULL;
-	while (len && ((size_t) d % 8 == 0))
+	while (len && ((size_t) d % 8 != 0))
 	{
 		*((char *) d++) = *((char *) s++);
 		len--;
