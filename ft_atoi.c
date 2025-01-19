@@ -42,13 +42,9 @@ int     ft_atoi(const char *str)
 #include <time.h>
 #include <limits.h>
 
-// Define the number of iterations for timing
 #define ITERATIONS 100000
 
-// Prototype of your custom atoi function
-int ft_atoi(const char *str);
 
-// Function to get the current time in seconds (with nanosecond precision)
 double get_time() {
     struct timespec ts;
     clock_gettime(CLOCK_MONOTONIC, &ts);
@@ -59,21 +55,18 @@ void benchmark(const char *test_case) {
     double start_time, std_time, custom_time;
     int std_result = 0, ft_result = 0;
 
-    // Benchmark standard atoi
     start_time = get_time();
     for (int i = 0; i < ITERATIONS; i++) {
         std_result = atoi(test_case);
     }
     std_time = (get_time() - start_time) / ITERATIONS;
 
-    // Benchmark custom ft_atoi
     start_time = get_time();
     for (int i = 0; i < ITERATIONS; i++) {
         ft_result = ft_atoi(test_case);
     }
     custom_time = (get_time() - start_time) / ITERATIONS;
 
-    // Debugging the results
     printf("----------------------------------------------------------\n");
     printf("Test case: '%s'\n", test_case);
     printf("Standard atoi:\n");
@@ -81,7 +74,6 @@ void benchmark(const char *test_case) {
     printf("Custom ft_atoi:\n");
     printf("  Result: %-11d | Avg Time: %e seconds\n", ft_result, custom_time);
 
-    // Compare results
     if (std_result == ft_result) {
         printf("✅ Results match\n");
     } else {
@@ -91,37 +83,35 @@ void benchmark(const char *test_case) {
 }
 
 int main() {
-    // Expanded test cases
     const char *test_cases[] = {
-        "12345",             // Simple positive number
-        "-67890",            // Simple negative number
-        "   42",             // Leading spaces
-        "42   ",             // Trailing spaces
-        "   -42   ",         // Leading and trailing spaces
-        "0",                 // Zero
-        "-0",                // Negative zero
-        "+42",               // Positive sign
-        "++42",              // Invalid input
-        "--42",              // Invalid input
-        "  +123abc456",      // Mixed valid and invalid characters
-        "abc",               // Non-numeric input
-        "  ",                // Only spaces
-        "",                  // Empty string
-        "2147483647",        // INT_MAX
-        "-2147483648",       // INT_MIN
-        "2147483648",        // Overflow case (greater than INT_MAX)
-        "-2147483649",       // Underflow case (less than INT_MIN)
-        "999999999999999999999", // Large positive number
-        "-999999999999999999999", // Large negative number
-        "\t\n42",            // Leading tab and newline
-        "42\t\n",            // Trailing tab and newline
-        "42 56",             // Multiple numbers
-        "  007",             // Leading zeros
+        "12345",
+        "-67890",
+        "   42",
+        "42   ",
+        "   -42   ",
+        "0",
+        "-0",
+        "+42",
+        "++42",
+        "--42",
+        "  +123abc456",
+        "abc",
+        "  ",
+        "",
+        "2147483647",
+        "-2147483648",
+        "2147483648",
+        "-2147483649",
+        "999999999999999999999",
+        "-999999999999999999999",
+        "\t\n42",
+        "42\t\n",
+        "42 56",
+        "  007",
     };
 
     int num_cases = sizeof(test_cases) / sizeof(test_cases[0]);
 
-    // Run benchmarks for each test case
     for (int i = 0; i < num_cases; i++) {
         benchmark(test_cases[i]);
     }
