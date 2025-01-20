@@ -1,18 +1,20 @@
 #include <stdio.h>	//for size_t
 
-void	*ft_memcpy(void *dest, void *src, size_t l)
+void	*ft_memcpy(void *dest, const void *src, size_t l)
 {
-	register void  *d = dest;
-	register void  *s = src;
-	register size_t len = l;
+	register void		*d = dest;
+	register const void	*s = src;
+	register size_t		len = l;
 
 	if (!dest || !src)
 		return NULL;
-	while (len && ((size_t) d % 8 != 0))
+
+	while (((size_t) d % 8 != 0) && len)
 	{
 		*((char *) d++) = *((char *) s++);
 		len--;
 	}
+
 	while (len >= sizeof(size_t))
 	{
 		*((size_t *) d) = *((size_t *) s);
@@ -20,11 +22,12 @@ void	*ft_memcpy(void *dest, void *src, size_t l)
 		s += sizeof(size_t);
 		len -= sizeof(size_t);
 	}
+
 	while (len)
 	{
 		*((char *) d++) = *((char *) s++);
 		len--;
 	}
+
 	return (dest);
 }
-
