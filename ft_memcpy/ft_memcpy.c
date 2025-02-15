@@ -2,9 +2,9 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t l)
 {
-	register void		*d = dest;
-	register const void	*s = src;
-	register size_t		len = l;
+	void		*d = dest;
+	const void	*s = src;
+	size_t		len = l;
 
 	if (!dest || !src)
 		return NULL;
