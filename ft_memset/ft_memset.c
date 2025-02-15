@@ -1,14 +1,12 @@
 #include <stdio.h>	//for size_t
 
-void	*ft_memset(void *str, int c, size_t n)
+void	*ft_memset(void *str, int c, size_t l)
 {
-	register void			*s;
-	register size_t			r;
-	register size_t			l;
-	register unsigned char	x;
+	void			*s;
+	size_t			r;
+	unsigned char	x;
 
 	s = str;
-	l = n;
 	x = (unsigned char) c;
 	r = 0x0101010101010101 * x;
 
