@@ -1,10 +1,8 @@
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *s)
 {
-	register long long	res;
-	register const char	*s;
+	long long	res;
 	int					sign;
 
-	s = str;
 	sign = 0;
 	while ((*s >= '\t' && *s <= '\r') || *s == ' ')
 		s++;
